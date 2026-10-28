@@ -1,0 +1,59 @@
+# Kernel source/build artifacts
+linux-*/
+*.o
+*.ko
+*.mod*
+*.cmd
+Module.symvers
+modules.order
+.tmp_versions/
+*.img
+vmlinux
+System.map
+.config
+.config.old
+*.tar.xz
+*.tar.gz
+
+# Build outputs
+build/
+*.cpio.gz
+*.cpio
+arch/x86/boot/bzImage
+arch/x86/boot/compressed/vmlinux
+
+# BPF artifacts
+bpf/vmlinux.h
+bpf/*.bpf.o
+bpf/*.skel.h
+*.o
+*.skel.h
+
+# Compiled binaries
+share/loader
+share/loader_static
+share/harness
+share/deny_test
+share/policy_op
+share/audit-run.sh
+audit/*.pyc
+__pycache__/
+*.pyc
+
+# QEMU logs/results (keep structure but ignore large logs if needed)
+results/*.log
+results/*.raw
+
+# Editor/temp
+*.swp
+*.swo
+*~
+.DS_Store
+.vscode/
+.idea/
+
+# Tools
+tools/
+
+# Initramfs staging
+build/initramfs/

@@ -1,0 +1,5 @@
+#!/usr/bin/env bpftrace
+tracepoint:io_uring:io_uring_submit_sqe
+{
+    printf("%d,%d,%d,%llu,%d,%d,%d\n", pid, uid, args->opcode, args->user_data, args->flags, 0, 0);
+}

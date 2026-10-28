@@ -1,0 +1,28 @@
+#!/bin/sh
+mount -t proc proc /proc
+mount -t sysfs sysfs /sys
+mount -t devtmpfs devtmpfs /dev 2>/dev/null || true
+mkdir -p /dev/pts
+mount -t devpts devpts /dev/pts 2>/dev/null || true
+mount -t debugfs debugfs /sys/kernel/debug 2>/dev/null || true
+mkdir -p /sys/kernel/security
+mount -t securityfs securityfs /sys/kernel/security 2>/dev/null || true
+mount -t tmpfs tmpfs /tmp
+mount -t tmpfs tmpfs /run
+
+echo "RINGGUARD_BOOT_OK"
+echo "LSM: $(cat /sys/kernel/security/lsm 2>/dev/null || echo unavailable)"
+echo "BTF: $(test -e /sys/kernel/btf/vmlinux && echo present || echo missing)"
+
+if mount -t 9p -o trans=virtio,version=9p2000.L hostshare /mnt 2>/dev/null; then
+    echo "SHARE_MOUNTED"
+    if [ -x /mnt/autorun.sh ]; then
+        /mnt/autorun.sh
+        echo "AUTORUN_DONE"
+        poweroff -f
+    fi
+    exec /bin/sh
+fi
+
+echo "SHARE_MOUNT_FAILED"
+exec /bin/sh

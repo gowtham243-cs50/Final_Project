@@ -1,0 +1,49 @@
+# RingGuard MVP host requirements
+# Target: Ubuntu 24.04 x86_64
+#
+# Install:
+#   sudo apt update
+#   sudo apt install -y build-essential bc bison flex m4 \
+#       libelf-dev libssl-dev libzstd-dev zlib1g-dev pkg-config \
+#       dwarves clang llvm libbpf-dev linux-tools-common bpftrace bcc \
+#       qemu-system-x86 qemu-system-common qemu-system-data seabios \
+#       cpio busybox-static xz-utils curl kmod cpu-checker
+#
+# KVM access for the current user:
+#   sudo usermod -aG kvm "$USER"
+#   newgrp kvm
+#
+# Verify:
+#   qemu-system-x86_64 --version
+#   pahole --version
+#   clang --version
+#   bpftool version
+#   kvm-ok
+
+build-essential
+bc
+bison
+flex
+m4
+libelf-dev
+libssl-dev
+libzstd-dev
+zlib1g-dev
+pkg-config
+dwarves
+clang
+llvm
+libbpf-dev
+linux-tools-common
+bpftrace
+bcc
+qemu-system-x86
+qemu-system-common
+qemu-system-data
+seabios
+cpio
+busybox-static
+xz-utils
+curl
+kmod
+cpu-checker
